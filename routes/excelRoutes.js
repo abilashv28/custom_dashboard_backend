@@ -5,14 +5,17 @@ const excelController = require('../controllers/excelController');
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' });
 
-// Existing route for uploading Excel
 router.post('/upload-excel', upload.single('file'), excelController.uploadExcel);
 
-// New route for fetching column names
 router.get('/get-column-names', excelController.getColumnNames);
 
-router.get('/dashboard', excelController.createDashboard);
+router.post('/dashboard', excelController.createDashboard);
 
+router.get('/view-details',excelController.viewDetails)
+
+router.post('/create-drilldown-chart',excelController.createDrilldownChart)
+
+router.post('/fetch-details',excelController.fetchDetails)
 
 
 module.exports = router;
